@@ -20,10 +20,10 @@ env:
   ICR_NAMESPACE: ${{ secrets.ICR_NAMESPACE }}
   REGISTRY_HOSTNAME: eu-gb.lb.appdomain.cloud
   IMAGE_NAME: mule-iks-poc
-  IKS_CLUSTER: cetukusl0tb557osq030
+  IKS_CLUSTER: 4tA_Q0DVKTN86zKJhkJLVHEYVP4UzV5HMRHRYFh8x8Qw
   DEPLOYMENT_NAME: mule-iks-poc
   PORT: 8080
-  RESOURCE_GROUP_NAME : ${{ secrets.RESOURCE_GROUP_NAME }}
+  RESOURCE_GROUP_NAME : CG_CFS_Dev
 
 jobs:
   setup-build-publish-deploy:
@@ -47,7 +47,7 @@ jobs:
     # Authenticate with IBM Cloud CLI
     - name: Authenticate with IBM Cloud CLI
       run: |
-        ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g default
+        ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g "${RESOURCE_GROUP_NAME}"
         ibmcloud cr region-set "${IBM_CLOUD_REGION}"
         ibmcloud cr login
         ibmcloud target -g "${RESOURCE_GROUP_NAME}"
