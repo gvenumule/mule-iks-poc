@@ -15,12 +15,12 @@ on:
 # Environment variables available to all jobs and steps in this workflow
 env:
   GITHUB_SHA: ${{ github.sha }}
-  IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
+  IBM_CLOUD_API_KEY: 4tA_Q0DVKTN86zKJhkJLVHEYVP4UzV5HMRHRYFh8x8Qw
   IBM_CLOUD_REGION: eu-gb
-  ICR_NAMESPACE: ${{ secrets.ICR_NAMESPACE }}
-  REGISTRY_HOSTNAME: eu-gb.lb.appdomain.cloud
+  ICR_NAMESPACE: default
+  REGISTRY_HOSTNAME: de.icr.io
   IMAGE_NAME: mule-iks-poc
-  IKS_CLUSTER: 4tA_Q0DVKTN86zKJhkJLVHEYVP4UzV5HMRHRYFh8x8Qw
+  IKS_CLUSTER: cetukusl0tb557osq030
   DEPLOYMENT_NAME: mule-iks-poc
   PORT: 8080
   RESOURCE_GROUP_NAME : CG_CFS_Dev
@@ -43,7 +43,6 @@ jobs:
         ibmcloud config --check-version=false
         ibmcloud plugin install -f kubernetes-service
         ibmcloud plugin install -f container-registry
-
     # Authenticate with IBM Cloud CLI
     - name: Authenticate with IBM Cloud CLI
       run: |
@@ -51,19 +50,16 @@ jobs:
         ibmcloud cr region-set "${IBM_CLOUD_REGION}"
         ibmcloud cr login
         ibmcloud target -g "${RESOURCE_GROUP_NAME}"
-
     # Build the Docker image
     - name: Build with Docker
       run: |
         docker build -t "$REGISTRY_HOSTNAME"/"$ICR_NAMESPACE"/"$IMAGE_NAME":"$GITHUB_SHA" \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
           --build-arg GITHUB_REF="$GITHUB_REF" .
-
     # Push the image to IBM Container Registry
     - name: Push the image to ICR
       run: |
         docker push $REGISTRY_HOSTNAME/$ICR_NAMESPACE/$IMAGE_NAME:$GITHUB_SHA
-
     # Deploy the Docker image to the IKS cluster
     - name: Deploy to IKS
       run: |
