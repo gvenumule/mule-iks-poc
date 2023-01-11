@@ -2,7 +2,7 @@
 FROM openjdk:8-jre-alpine3.9
 
 # copy the packaged jar file into our docker image
-COPY target/mule-iks-poc-1.0.0-SNAPSHOT-mule-application.jar
+COPY target/mule-iks-poc-1.0.0-SNAPSHOT-mule-application.jar mule-iks-poc-1.0.0-SNAPSHOT-mule-application.jar
 
 # set the startup command to execute the jar
 CMD ["java", "-jar", "mule-iks-poc-1.0.0-SNAPSHOT-mule-application.jar"]
