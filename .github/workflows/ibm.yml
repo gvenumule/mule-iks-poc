@@ -18,7 +18,7 @@ env:
   IBM_CLOUD_API_KEY: 4tA_Q0DVKTN86zKJhkJLVHEYVP4UzV5HMRHRYFh8x8Qw
   IBM_CLOUD_REGION: eu-gb
   ICR_NAMESPACE: default
-  REGISTRY_HOSTNAME: eu-gb.lb.appdomain.cloud
+  REGISTRY_HOSTNAME: de.icr.io
   IMAGE_NAME: mule-iks-poc
   IKS_CLUSTER: cetukusl0tb557osq030
   DEPLOYMENT_NAME: mule-iks-poc
