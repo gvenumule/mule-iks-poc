@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="790f41d4-fd3c-4a99-a96b-90cbb8a8dec3" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="mule-iks-pocFlow" doc:id="344820cf-84c1-49a3-82cf-7e6c6b9c3a30" >
+		<http:listener doc:name="Listener" doc:id="a6ae3006-9dc9-46ad-8cf7-d0a3b6ab00b5" config-ref="HTTP_Listener_config" path="/testing"/>
+		<logger level="INFO" doc:name="Logger" doc:id="5122b144-f517-423c-917c-32701efec3ce" message='"Request received"'/>
+		<set-payload value='#["Welcome to First Mule application in IKS"]' doc:name="Set Payload" doc:id="2a22e180-4ee9-411e-9f15-1abeabddb758" />
+	</flow>
+</mule>
