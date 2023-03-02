@@ -4,7 +4,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>mule-iks-poc</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>mule-iks-poc</name>
