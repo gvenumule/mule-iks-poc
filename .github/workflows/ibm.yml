@@ -15,9 +15,9 @@ on:
 # Environment variables available to all jobs and steps in this workflow
 env:
   GITHUB_SHA: ${{ github.sha }}
-  IBM_CLOUD_API_KEY: ${{ secure.IBM_CLOUD_API_KEY }}
+  #IBM_CLOUD_API_KEY: ${{ secure.IBM_CLOUD_API_KEY }}
   IBM_CLOUD_REGION: eu-gb
-  ICR_NAMESPACE: default
+  ICR_NAMESPACE: mule-poc
   REGISTRY_HOSTNAME: uk.icr.io
   IMAGE_NAME: mule-iks-poc
   IKS_CLUSTER: cetukusl0tb557osq030
@@ -46,10 +46,17 @@ jobs:
     # Authenticate with IBM Cloud CLI
     - name: Authenticate with IBM Cloud CLI
       run: |
-        ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g "${RESOURCE_GROUP_NAME}"
-        ibmcloud cr region-set "${IBM_CLOUD_REGION}"
-        ibmcloud cr login
-        ibmcloud target -g "${RESOURCE_GROUP_NAME}"
+        #ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g "${RESOURCE_GROUP_NAME}"
+        ibmcloud login -a cloud.ibm.com -r "${IBM_CLOUD_REGION}" -g "${RESOURCE_GROUP_NAME}"
+        ibmcloud ks cluster config --cluster cetukusl0tb557osq030
+        ibmcloud target -g CG_CFS_Dev 
+        ibmcloud cr region-set uk-south
+        ibmcloud ks cluster config --cluster cetukusl0tb557osq030
+        ibmcloud cr login --client docker
+        kubectl config current-context
+        #ibmcloud cr region-set "${IBM_CLOUD_REGION}"
+        #ibmcloud cr login
+        #ibmcloud target -g "${RESOURCE_GROUP_NAME}"
     # Build the Docker image
     - name: Build with Docker
       run: |
