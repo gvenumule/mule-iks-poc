@@ -6,7 +6,7 @@
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="790f41d4-fd3c-4a99-a96b-90cbb8a8dec3" >
-		<http:listener-connection host="localhost" port="8082" />
+		<http:listener-connection host="localhost" port="8081" />
 	</http:listener-config>
 	<flow name="mule-iks-pocFlow" doc:id="344820cf-84c1-49a3-82cf-7e6c6b9c3a30" >
 		<http:listener doc:name="Listener" doc:id="a6ae3006-9dc9-46ad-8cf7-d0a3b6ab00b5" config-ref="HTTP_Listener_config" path="/muletesting"/>
